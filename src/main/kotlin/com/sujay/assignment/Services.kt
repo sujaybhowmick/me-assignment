@@ -52,19 +52,22 @@ class AccountServiceImpl : AccountService {
         val filteredTransactions = transactions?.filter { it ->
             (it.transactionDate >= fromLocalDateTime && it.transactionDate <= toLocalDateTime) || it.transactionType == TransactionType.REVERSAL
         }
-        val balance = filteredTransactions?.sumByDouble { selector ->
+        var balance = filteredTransactions?.sumByDouble { selector ->
             when (selector.transactionType) {
                 TransactionType.REVERSAL -> -selector.amount.toDouble()
-                else -> selector.amount.toDouble()
+                TransactionType.PAYMENT -> selector.amount.toDouble()
             }
         }
-        val transactionCount = filteredTransactions?.sumBy { it ->
+        var transactionCount = filteredTransactions?.sumBy { it ->
             when (it.transactionType) {
                 TransactionType.REVERSAL -> -1
-                else -> 1
+                TransactionType.PAYMENT -> 1
             }
         }
-        return Pair(balance, transactionCount)
+        return if( balance == null && transactionCount == null) {
+            Pair(0.00, 0)
+        }else
+            Pair(balance, transactionCount)
     }
 
     /**

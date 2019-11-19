@@ -25,7 +25,11 @@ fun main(args: Array<String>) {
         val fromDate = args[1]
         val toDate = args[2]
         val result = accountService.getRelativeBalanceForPeriod(accountId, fromDate, toDate)
-        println("Relative balance for the period is: -$%.2f".format(result.first))
+        if(result.first == 0.00) {
+            println("Relative balance for the period is: $%.2f".format(result.first))
+        }else {
+            println("Relative balance for the period is: -$%.2f".format(result.first))
+        }
         println("Number of transactions included is: ${result.second}")
     } else {
         println("Usage: program accountId fromDate toDate")
