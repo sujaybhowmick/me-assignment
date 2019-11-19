@@ -2,10 +2,14 @@
 
 This project uses Gradle for project build and dependency management
 
+## Class Diagram
+
+![Main](/Users/sujaybhowmick/Downloads/Main.png)
+
 ## To build the project archive (jar)
 
 ```bash
-$ git clone 
+$ git clone https://github.com/sujaybhowmick/me-assignment.git
 $ gradlew clean jar
 ```
 
@@ -20,6 +24,6 @@ Number of transactions included is: 1
 ## To run the Unit tests
 
 ```bash
-$ gradlew clean jar
+$ gradlew test
 ```
 
