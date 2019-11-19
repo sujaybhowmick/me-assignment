@@ -4,7 +4,7 @@ This project uses Gradle for project build and dependency management
 
 ## Class Diagram
 
-![Main](/Users/sujaybhowmick/Downloads/Main.png)
+
 
 ## To build the project archive (jar)
 
